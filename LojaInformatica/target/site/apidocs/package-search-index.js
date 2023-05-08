@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.mycompany.lojainformatica"},{"l":"com.mycompany.lojainformatica.dao"},{"l":"com.mycompany.lojainformatica.model"},{"l":"com.mycompany.lojainformatica.view"}];updateSearchResults();
