@@ -15,7 +15,6 @@ import com.mycompany.lojainformatica.model.Computador;
  */
 public class TelaComputadores extends javax.swing.JFrame {
 
-    Computador objComputadorTelaC = new Computador();
     /**
      * vindo da tela de consulta para a de cadastro para alterar
      */
@@ -142,11 +141,7 @@ public class TelaComputadores extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cboProcessadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboProcessadorActionPerformed
-        /* colocando a opçao selecionada em uma variavel String para mudar o nome da variavel processador da model
-        usando o obj da model para mudar o valor
-         */
-        String processadorSelecionado = cboProcessador.getSelectedItem().toString();
-        objComputadorTelaC.setPrecessador(processadorSelecionado);
+
     }//GEN-LAST:event_cboProcessadorActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
@@ -170,14 +165,14 @@ public class TelaComputadores extends javax.swing.JFrame {
                 boolean retorno = ComputadoresDAO.salvar(objTelaCadastro);
 
                 if (retorno) {
-                    JOptionPane.showMessageDialog(rootPane, "sucesso no cadastro!");
+                    JOptionPane.showMessageDialog(rootPane, "cadastrado !");
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "Falha no cadastro!!");
+                    JOptionPane.showMessageDialog(rootPane, "Não foi possivel cadastrar!!");
                 }
             }
 
         } else if (objComputador != null && objComputador.getNumeroDoComputador() > 0) {
-            
+
             if (cboProcessador.getSelectedIndex() == 0 && cboHD.getSelectedIndex() == 0) {
                 JOptionPane.showMessageDialog(rootPane, " Selecione as opçoes de hd e Processador !");
             } else if (cboProcessador.getSelectedIndex() == 0) {/* se apenas o hd foi selecionado*/
@@ -207,18 +202,12 @@ public class TelaComputadores extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void cboHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboHDActionPerformed
-        /* colocando a opçao selecionada em uma variavel String para mudar o nome da variavel processador da model
-        usando o obj da model para mudar o valor
-         */
-        String HDSelecionado = cboHD.getSelectedItem().toString();
-
-        objComputadorTelaC.setHD(HDSelecionado);
 
     }//GEN-LAST:event_cboHDActionPerformed
 
     private void btnConsultarTelaCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarTelaCadastrarActionPerformed
-        TelaConsulta atalhoBTN = new TelaConsulta();
-        atalhoBTN.setVisible(true);
+        TelaConsulta chamarTelaConsulta = new TelaConsulta();
+        chamarTelaConsulta.setVisible(true);
 
 
     }//GEN-LAST:event_btnConsultarTelaCadastrarActionPerformed

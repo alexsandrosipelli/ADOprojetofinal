@@ -144,7 +144,6 @@ public class ComputadoresDAO {
             //Passo 3 - Prepara o comando SQL
             PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE computador SET Processador = ?, HD = ? WHERE numeroDoComputador= ?");
 
-           
             comandoSQL.setString(1, obj.getPrecessador());
             comandoSQL.setString(2, obj.getHD());
             comandoSQL.setInt(3, obj.getNumeroDoComputador());

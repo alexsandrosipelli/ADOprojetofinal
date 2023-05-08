@@ -6,7 +6,6 @@ package com.mycompany.lojainformatica.view;
 
 import com.mycompany.lojainformatica.dao.ComputadoresDAO;
 import com.mycompany.lojainformatica.model.Computador;
-import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -214,23 +213,19 @@ public class TelaConsulta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        // impotando a class mode e a DAO, jutno com o metodo de listar
+        // impotando a class mode e a DAO, junto com o metodo de listar
         ArrayList<Computador> lista = ComputadoresDAO.listar();
         /*convertendo o modelo de tabela da tabela "tblConsulta" em um objeto "DefaultTableModel".*/
         DefaultTableModel modelo = (DefaultTableModel) tblConsulta.getModel();
-        /*atualiza a tabela "tblConsulta" com os dados da lista de objetos "NotaFiscal" obtida do banco de dados.*/
+        /*atualiza a tabela "tblConsulta" com os dados da lista de objetos, obtida do banco de dados.*/
 
         modelo.setRowCount(0);
         for (Computador item : lista) {
             modelo.addRow(new String[]{String.valueOf(item.getNumeroDoComputador()), (item.getMarca()), String.valueOf(item.getPrecessador()), String.valueOf(item.getHD())});
         }
-
-// TODO add your handling code here:
-
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-
         if (tblConsultaProcessador.getSelectedRow() != -1) {
             int linhaSelecionadaExcluir = tblConsultaProcessador.getSelectedRow();
 
@@ -240,16 +235,17 @@ public class TelaConsulta extends javax.swing.JFrame {
             boolean retorno = ComputadoresDAO.excluir(id);
             if (retorno) {
                 modelo.removeRow(linhaSelecionadaExcluir);
-                JOptionPane.showMessageDialog(rootPane, "sucesso");
+                JOptionPane.showMessageDialog(rootPane, "Excluido!!");
 
             } else {
                 JOptionPane.showMessageDialog(rootPane, "falha!");
             }
 
-// remove da tabela 
+            // remove da tabela de processador 
         } else if (tblConsulta.getSelectedRow() == -1 && tblConsultaProcessador.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(rootPane, "selecione uma linha para excluir");
         }
+
         if (tblConsulta.getSelectedRow() != -1) {
 
             int linhaSelecionada = tblConsulta.getSelectedRow();
@@ -259,16 +255,14 @@ public class TelaConsulta extends javax.swing.JFrame {
             boolean retorno = ComputadoresDAO.excluir(id);
             if (retorno) {
                 modelo.removeRow(linhaSelecionada);
-                JOptionPane.showMessageDialog(rootPane, "sucesso");
+                JOptionPane.showMessageDialog(rootPane, "Excluido");
 
             } else {
                 JOptionPane.showMessageDialog(rootPane, "falha!");
             }
 
-// remove da tabela 
+            // remove da tabela geral
         }
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
@@ -284,7 +278,6 @@ public class TelaConsulta extends javax.swing.JFrame {
             DefaultTableModel modeloConsulta = (DefaultTableModel) tblConsultaProcessador.getModel();
 
             int numeroPCFiltro = Integer.parseInt(modeloConsulta.getValueAt(linhaSelecionadafilto, 0).toString());
-            /*String marca = (modelo.getValueAt(linhaSelecionada, 1).toString());//se for possivel alterar a marca */
             String processadorFiltro = (modeloConsulta.getValueAt(linhaSelecionadafilto, 2).toString());
             String HDFiltro = (modeloConsulta.getValueAt(linhaSelecionadafilto, 3).toString());
 
@@ -303,20 +296,16 @@ public class TelaConsulta extends javax.swing.JFrame {
 
             DefaultTableModel modelo = (DefaultTableModel) tblConsulta.getModel();/*<-- (conversão) do modelo de dados da  tabela tbl consulta */
             // pegando a linha  selecionada e convetendo o obj  para String e em seguinda convetendo para int e amazenando na variavel id  
-
-
             int numeroPC = Integer.parseInt(modelo.getValueAt(linhaSelecionada, 0).toString());
             /*String marca = (modelo.getValueAt(linhaSelecionada, 1).toString());//se for possivel alterar a marca */
             String marca = (modelo.getValueAt(linhaSelecionada, 1).toString());
             String processador = (modelo.getValueAt(linhaSelecionada, 2).toString());
             String HD = (modelo.getValueAt(linhaSelecionada, 3).toString());
-
             //Passo os valores das variáveis para um objeto
             //NotaFiscal obj = new NotaFiscal(id, numero, valor);
             objComputador.setMarca(marca);
             objComputador.setNumeroDoComputador(numeroPC);
             objComputador.setPrecessador(processador);
-
             objComputador.setHD(HD);
             TelaComputadores telaComputadores = new TelaComputadores(objComputador);
             telaComputadores.setVisible(true);
@@ -350,8 +339,6 @@ public class TelaConsulta extends javax.swing.JFrame {
                 modelo.addRow(new String[]{String.valueOf(item.getNumeroDoComputador()), (item.getMarca()), String.valueOf(item.getPrecessador()), String.valueOf(item.getHD())});
             }
         }
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_btnFiltarActionPerformed
 
     private void btnCadastrarNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarNovoActionPerformed
